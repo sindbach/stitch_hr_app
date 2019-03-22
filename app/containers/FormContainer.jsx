@@ -9,6 +9,7 @@ class FormContainer extends Component {
     super(props);
     this.state = {
       showResults: false,
+      showProgress: false,
       results: null, 
       client: null,
       mongodb: null,
@@ -39,13 +40,16 @@ class FormContainer extends Component {
                       .then(docs =>{
                         this.state.showResults = true;
                         this.state.results = docs;
+                        this.state.showProgress = false;
                         this.setState(this.state);
                         console.log(docs);
                       });
           });
   }
   progressBar(container) {
+    this.state.showProgress = true;
     ReactDOM.render(<LinearProgress color="secondary"/>, container);
+    this.setState(this.state);
   }
 
   handleHRForm(e) {
@@ -108,6 +112,7 @@ class FormContainer extends Component {
       <br/><br/>
       <div id="description"></div>
       <br/>
+      { this.state.showProgress ? <LinearProgress color="secondary"/> : null}
       { this.state.showResults ? <CustomizedTable data={this.state.results}/> : null }
       </div>
     );
