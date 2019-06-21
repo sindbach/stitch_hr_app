@@ -1,0 +1,12 @@
+{
+    "id": "5c776b173b3125e041b5d551",
+    "name": "local-userpass",
+    "type": "local-userpass",
+    "config": {
+        "confirmEmailSubject": "",
+        "emailConfirmationUrl": "http://localhost/confirmEmail",
+        "resetPasswordSubject": "",
+        "resetPasswordUrl": "http://localhost/resetPassword"
+    },
+    "disabled": false
+}

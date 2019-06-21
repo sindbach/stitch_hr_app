@@ -1,0 +1,178 @@
+{
+    "id": "5c7ba7346b6ab4c91000145c",
+    "database": "hr",
+    "collection": "employee",
+    "filters": [
+        {
+            "name": "active_only",
+            "query": {
+                "employmentStatus": "active"
+            },
+            "apply_when": {
+                "%%true": true
+            }
+        }
+    ],
+    "roles": [
+        {
+            "name": "hr",
+            "apply_when": {
+                "%%user.id": {
+                    "%in": [
+                        "5c922b377255ff913d33d5cc"
+                    ]
+                }
+            },
+            "fields": {
+                "dob": {
+                    "read": true
+                },
+                "email": {
+                    "read": true
+                },
+                "employmentStatus": {
+                    "read": true
+                },
+                "gender": {
+                    "read": true
+                },
+                "manager": {
+                    "read": true
+                },
+                "managerid": {
+                    "read": true
+                },
+                "name": {
+                    "read": true
+                },
+                "position": {
+                    "read": true
+                },
+                "salary": {
+                    "read": true
+                },
+                "userid": {}
+            },
+            "insert": true,
+            "delete": true,
+            "additional_fields": {
+                "read": true
+            }
+        },
+        {
+            "name": "isReportee",
+            "apply_when": {
+                "%%root.managerid": {
+                    "%eq": "%%user.id"
+                }
+            },
+            "fields": {
+                "dob": {},
+                "email": {
+                    "read": true
+                },
+                "employmentStatus": {
+                    "read": true
+                },
+                "gender": {
+                    "read": true
+                },
+                "manager": {
+                    "read": true
+                },
+                "managerid": {
+                    "read": true
+                },
+                "name": {
+                    "read": true
+                },
+                "position": {
+                    "read": true
+                },
+                "salary": {
+                    "read": true
+                },
+                "userid": {}
+            },
+            "insert": false,
+            "delete": false,
+            "additional_fields": {}
+        },
+        {
+            "name": "own_data",
+            "apply_when": {
+                "userid": "%%user.id"
+            },
+            "fields": {
+                "dob": {
+                    "read": true
+                },
+                "email": {
+                    "read": true
+                },
+                "employmentStatus": {
+                    "read": true
+                },
+                "gender": {
+                    "read": true
+                },
+                "manager": {
+                    "read": true
+                },
+                "managerid": {
+                    "read": true
+                },
+                "name": {
+                    "read": true
+                },
+                "position": {
+                    "read": true
+                },
+                "salary": {
+                    "read": true
+                },
+                "userid": {}
+            },
+            "insert": false,
+            "delete": false,
+            "additional_fields": {}
+        },
+        {
+            "name": "everyone",
+            "apply_when": {
+                "%%true": true
+            },
+            "fields": {
+                "dob": {},
+                "email": {},
+                "employmentStatus": {},
+                "gender": {},
+                "manager": {
+                    "read": true
+                },
+                "managerid": {},
+                "name": {
+                    "read": true
+                },
+                "position": {
+                    "read": true
+                },
+                "salary": {},
+                "userid": {}
+            },
+            "insert": false,
+            "delete": false,
+            "additional_fields": {}
+        }
+    ],
+    "schema": {
+        "properties": {
+            "_id": {
+                "bsonType": "objectId"
+            },
+            "employeeId": {
+                "bsonType": "string"
+            }
+        }
+    }
+}
